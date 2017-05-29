@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.abnormallydriven.architecturecomponentspost"
+        minSdkVersion 22
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+final ESPRESSO_VERSION = "2.2.2"
+final SUPPORT_LIBRARY_VERSION = "25.3.1"
+final JUNIT_VERSION = "4.12"
+final CONSTRAINT_LAYOUT_VERSION = "1.0.2"
+final ARCH_COMPONENTS_VERSION = "1.0.0-alpha1"
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${ESPRESSO_VERSION}", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
+    testCompile "junit:junit:${JUNIT_VERSION}"
+    compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT_VERSION}"
+
+
+    compile "android.arch.lifecycle:runtime:${ARCH_COMPONENTS_VERSION}"
+    compile "android.arch.lifecycle:extensions:${ARCH_COMPONENTS_VERSION}"
+    annotationProcessor "android.arch.lifecycle:compiler:${ARCH_COMPONENTS_VERSION}"
+}
