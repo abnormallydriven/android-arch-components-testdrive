@@ -1,0 +1,210 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "929f12e82769729f246d87732caca371",
+    "entities": [
+      {
+        "tableName": "users",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `firstName` TEXT, `lastName` TEXT, `age` INTEGER, `gender` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "firstName",
+            "columnName": "firstName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lastName",
+            "columnName": "lastName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "age",
+            "columnName": "age",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "measurements",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `lowerLeftBicep` REAL, `lowerRightBicep` REAL, `leftBicep` REAL, `rightBicep` REAL, `leftCalf` REAL, `rightCalf` REAL, `chest` REAL, `leftForearm` REAL, `rightForearm` REAL, `highHip` REAL, `hip` REAL, `lowerLeftThigh` REAL, `lowerRightThigh` REAL, `midLeftThigh` REAL, `midRightThigh` REAL, `upperLeftThigh` REAL, `upperRightThigh` REAL, `abdominalWaist` REAL, `lowerWaist` REAL, `narrowestWaist` REAL, `measurementDate` INTEGER, `userId` INTEGER, FOREIGN KEY(`userId`) REFERENCES `users`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lowerLeftBicep",
+            "columnName": "lowerLeftBicep",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "lowerRightBicep",
+            "columnName": "lowerRightBicep",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "leftBicep",
+            "columnName": "leftBicep",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "rightBicep",
+            "columnName": "rightBicep",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "leftCalf",
+            "columnName": "leftCalf",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "rightCalf",
+            "columnName": "rightCalf",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "chest",
+            "columnName": "chest",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "leftForearm",
+            "columnName": "leftForearm",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "rightForearm",
+            "columnName": "rightForearm",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "highHip",
+            "columnName": "highHip",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "hip",
+            "columnName": "hip",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "lowerLeftThigh",
+            "columnName": "lowerLeftThigh",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "lowerRightThigh",
+            "columnName": "lowerRightThigh",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "midLeftThigh",
+            "columnName": "midLeftThigh",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "midRightThigh",
+            "columnName": "midRightThigh",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "upperLeftThigh",
+            "columnName": "upperLeftThigh",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "upperRightThigh",
+            "columnName": "upperRightThigh",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "abdominalWaist",
+            "columnName": "abdominalWaist",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "lowerWaist",
+            "columnName": "lowerWaist",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "narrowestWaist",
+            "columnName": "narrowestWaist",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "measurementDate",
+            "columnName": "measurementDate",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_measurements_measurementDate",
+            "unique": true,
+            "columnNames": [
+              "measurementDate"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_measurements_measurementDate` ON `${TABLE_NAME}` (`measurementDate`)"
+          },
+          {
+            "name": "index_measurements_userId",
+            "unique": false,
+            "columnNames": [
+              "userId"
+            ],
+            "createSql": "CREATE  INDEX `index_measurements_userId` ON `${TABLE_NAME}` (`userId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "users",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "userId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"929f12e82769729f246d87732caca371\")"
+    ]
+  }
+}
