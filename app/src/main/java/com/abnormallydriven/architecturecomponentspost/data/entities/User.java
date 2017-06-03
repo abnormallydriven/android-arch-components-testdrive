@@ -1,14 +1,14 @@
-package com.abnormallydriven.architecturecomponentspost.entities;
+package com.abnormallydriven.architecturecomponentspost.data.entities;
 
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "users")
 public class User {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
 
     private String firstName;
 
@@ -18,11 +18,11 @@ public class User {
 
     private String gender;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
