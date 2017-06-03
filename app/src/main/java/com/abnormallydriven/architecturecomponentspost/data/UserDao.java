@@ -25,7 +25,7 @@ public interface UserDao {
     @Query("SELECT * FROM users")
     User[] getAllUsers();
 
-    @Query("SELECT * from user where id = :userId LIMIT 1")
+    @Query("SELECT * from users where id = :userId LIMIT 1")
     User getUserById(long userId);
 
 }

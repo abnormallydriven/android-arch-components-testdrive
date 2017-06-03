@@ -20,7 +20,7 @@ public interface MeasurementDao {
     void updateMeasurement(Measurement measurement);
 
     @Delete
-    void deleteMeasurement();
+    void deleteMeasurement(Measurement measurement);
 
     @Query("SELECT * from measurements where userId = :userId")
     Measurement[] getUserMeasurements(long userId);
