@@ -10,7 +10,7 @@ public class MeasurementTrackerApp extends Application {
         super.onCreate();
 
         ApplicationComponent applicationComponent = DaggerApplicationComponent.builder()
-            .application(this)
+            .applicationContext(this)
             .build();
         
         DaggerInjector.initializeComponent(applicationComponent);

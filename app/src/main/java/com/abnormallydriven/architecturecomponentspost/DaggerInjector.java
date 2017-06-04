@@ -5,11 +5,11 @@ public final class DaggerInjector {
 
     private static ApplicationComponent appComponent;
 
-    static void initializeComponent(ApplicationComponent applicationComonent) {
+    public static void initializeComponent(ApplicationComponent applicationComonent) {
         appComponent = applicationComonent;
     }
 
-    static ApplicationComponent getAppComponent() {
+    public static ApplicationComponent getAppComponent() {
         if (null == appComponent) {
             throw new NullPointerException("Application component was null when requested");
         }
