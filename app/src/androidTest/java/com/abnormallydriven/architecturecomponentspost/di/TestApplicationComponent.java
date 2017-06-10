@@ -4,14 +4,19 @@ package com.abnormallydriven.architecturecomponentspost.di;
 import android.content.Context;
 
 import com.abnormallydriven.architecturecomponentspost.data.MeasurementDatabase;
+import com.abnormallydriven.architecturecomponentspost.userlist.UserListActivityModule;
 
 import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 
 @Singleton
-@Component(modules = {ApplicationModule.class, TestDatabaseModule.class})
+@Component(modules = {AndroidInjectionModule.class,
+        DatabaseModule.class,
+        ApplicationModule.class,
+        UserListActivityModule.class})
 public interface TestApplicationComponent extends ApplicationComponent {
 
     MeasurementDatabase measurementDatabase();

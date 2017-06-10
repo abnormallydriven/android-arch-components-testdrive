@@ -1,13 +1,23 @@
 package com.abnormallydriven.architecturecomponentspost;
 
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.abnormallydriven.architecturecomponentspost.di.ApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.di.DaggerApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.di.DaggerInjector;
 
-public class MeasurementTrackerApp extends Application {
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+
+public class MeasurementTrackerApp extends Application  implements HasActivityInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
@@ -18,5 +28,11 @@ public class MeasurementTrackerApp extends Application {
             .build();
         
         DaggerInjector.initializeComponent(applicationComponent);
+        DaggerInjector.getAppComponent().inject(this);
+    }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 }
