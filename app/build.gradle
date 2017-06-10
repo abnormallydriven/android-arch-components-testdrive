@@ -61,4 +61,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
     provided 'javax.annotation:jsr250-api:1.0'
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+
+    compile "android.arch.lifecycle:runtime:${ARCH_COMPONENTS_VERSION}"
+    compile "android.arch.lifecycle:extensions:${ARCH_COMPONENTS_VERSION}"
+    annotationProcessor "android.arch.lifecycle:compiler:${ARCH_COMPONENTS_VERSION}"
 }
