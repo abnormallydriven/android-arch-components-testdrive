@@ -13,8 +13,9 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
 @Singleton
-@Component(modules = {AndroidInjectionModule.class,
-        DatabaseModule.class,
+@Component(modules = {
+        AndroidInjectionModule.class,
+        TestDatabaseModule.class,
         ApplicationModule.class,
         UserListActivityModule.class})
 public interface TestApplicationComponent extends ApplicationComponent {
