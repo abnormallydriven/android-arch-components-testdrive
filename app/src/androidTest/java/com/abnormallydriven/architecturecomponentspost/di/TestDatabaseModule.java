@@ -1,7 +1,11 @@
-package com.abnormallydriven.architecturecomponentspost.data;
+package com.abnormallydriven.architecturecomponentspost.di;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
+
+import com.abnormallydriven.architecturecomponentspost.data.MeasurementDao;
+import com.abnormallydriven.architecturecomponentspost.data.MeasurementDatabase;
+import com.abnormallydriven.architecturecomponentspost.data.UserDao;
 
 import javax.inject.Singleton;
 
@@ -9,12 +13,12 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class DatabaseModule {
+public class TestDatabaseModule {
 
     @Singleton
     @Provides
-    static MeasurementDatabase provideMeasurementDatabase(Context app){
-        return Room.databaseBuilder(app, MeasurementDatabase.class, "measurement.db").build();
+    static MeasurementDatabase provideMeasurementDatabase(Context appContext){
+        return Room.inMemoryDatabaseBuilder(appContext, MeasurementDatabase.class).build();
     }
 
     @Singleton

@@ -1,9 +1,7 @@
-package com.abnormallydriven.architecturecomponentspost;
+package com.abnormallydriven.architecturecomponentspost.di;
 
 
 import android.content.Context;
-
-import com.abnormallydriven.architecturecomponentspost.data.DatabaseModule;
 
 import javax.inject.Singleton;
 

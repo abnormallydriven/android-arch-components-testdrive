@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 
-import com.abnormallydriven.architecturecomponentspost.DaggerTestApplicationComponent;
-import com.abnormallydriven.architecturecomponentspost.TestApplicationComponent;
+import com.abnormallydriven.architecturecomponentspost.di.DaggerTestApplicationComponent;
+import com.abnormallydriven.architecturecomponentspost.di.TestApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.data.entities.User;
 
 import org.junit.After;
