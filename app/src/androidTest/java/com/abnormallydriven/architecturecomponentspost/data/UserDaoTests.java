@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 
+import com.abnormallydriven.architecturecomponentspost.LiveDataTestUtil;
 import com.abnormallydriven.architecturecomponentspost.di.DaggerTestApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.di.TestApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.data.entities.User;
@@ -41,7 +42,7 @@ public class UserDaoTests {
         User testUser = getTestUser("Brett", "Tucker", 29, "Male");
 
         long insertedUserId = userDao.inserUser(testUser);
-        User userById = userDao.getUserById(insertedUserId);
+        User userById = LiveDataTestUtil.getValue(userDao.getUserById(insertedUserId));
 
         assertEquals(testUser.getAge(), userById.getAge());
     }
@@ -55,7 +56,7 @@ public class UserDaoTests {
         testUser.setAge(30);
         userDao.updateUser(testUser);
 
-        User userByUserId = userDao.getUserById(insertedUserId);
+        User userByUserId = LiveDataTestUtil.getValue(userDao.getUserById(insertedUserId));
 
         assertEquals(30, userByUserId.getAge());
     }
@@ -68,7 +69,7 @@ public class UserDaoTests {
 
         userDao.deleteUser(testUser);
 
-        User userById = userDao.getUserById(insertedUserId);
+        User userById = LiveDataTestUtil.getValue(userDao.getUserById(insertedUserId));
 
         assertNull(userById);
 
@@ -82,7 +83,7 @@ public class UserDaoTests {
         userDao.inserUser(brett);
         userDao.inserUser(john);
 
-        User[] allUsers = userDao.getAllUsers();
+        User[] allUsers = LiveDataTestUtil.getValue(userDao.getAllUsers());
 
         assertEquals(2, allUsers.length);
 

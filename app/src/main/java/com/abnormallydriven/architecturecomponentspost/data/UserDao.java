@@ -1,6 +1,7 @@
 package com.abnormallydriven.architecturecomponentspost.data;
 
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -23,9 +24,9 @@ public interface UserDao {
     void deleteUser(User user);
 
     @Query("SELECT * FROM users")
-    User[] getAllUsers();
+    LiveData<User[]> getAllUsers();
 
     @Query("SELECT * from users where id = :userId LIMIT 1")
-    User getUserById(long userId);
+    LiveData<User> getUserById(long userId);
 
 }
