@@ -4,7 +4,7 @@ package com.abnormallydriven.architecturecomponentspost.di;
 import android.content.Context;
 
 import com.abnormallydriven.architecturecomponentspost.data.MeasurementDatabase;
-import com.abnormallydriven.architecturecomponentspost.userlist.UserListActivityModule;
+import com.abnormallydriven.architecturecomponentspost.userlist.UserListActivityInjectorModule;
 
 import javax.inject.Singleton;
 
@@ -17,7 +17,7 @@ import dagger.android.AndroidInjectionModule;
         AndroidInjectionModule.class,
         TestDatabaseModule.class,
         ApplicationModule.class,
-        UserListActivityModule.class})
+        UserListActivityInjectorModule.class})
 public interface TestApplicationComponent extends ApplicationComponent {
 
     MeasurementDatabase measurementDatabase();
