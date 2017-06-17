@@ -16,7 +16,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = ExecutorsModule.class)
+@Module(includes = {ExecutorsModule.class, ViewModelModule.class})
 public class ApplicationModule {
 
     @Provides
