@@ -31,10 +31,10 @@ android {
 }
 
 final ESPRESSO_VERSION = "2.2.2"
-final SUPPORT_LIBRARY_VERSION = "25.3.1"
+final SUPPORT_LIBRARY_VERSION = "25.4.0"
 final JUNIT_VERSION = "4.12"
 final CONSTRAINT_LAYOUT_VERSION = "1.0.2"
-final ARCH_COMPONENTS_VERSION = "1.0.0-alpha1"
+final ARCH_COMPONENTS_VERSION = "1.0.0-alpha3"
 final DAGGER_VERSION = "2.11"
 
 dependencies {
@@ -43,6 +43,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:recyclerview-v7:${SUPPORT_LIBRARY_VERSION}"
+
     testCompile "junit:junit:${JUNIT_VERSION}"
     compile "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT_VERSION}"
 
