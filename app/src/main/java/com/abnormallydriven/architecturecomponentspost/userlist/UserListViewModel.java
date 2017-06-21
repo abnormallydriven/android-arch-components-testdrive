@@ -15,7 +15,6 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
-
 public class UserListViewModel extends ViewModel {
 
     private final Executor diskExecutor;
@@ -32,12 +31,12 @@ public class UserListViewModel extends ViewModel {
         usersMutableLiveData.setValue(new User[0]);
     }
 
-    public LiveData<User[]> getUsers(){
+    LiveData<User[]> getUsers(){
         return usersMutableLiveData;
     }
 
 
-    public void onRefreshUserList(){
+    void onRefreshUserList(){
         diskExecutor.execute(new Runnable() {
             @Override
             public void run() {
