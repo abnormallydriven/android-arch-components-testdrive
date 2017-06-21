@@ -2,9 +2,7 @@ package com.abnormallydriven.architecturecomponentspost.userlist;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.Nullable;
 
 import com.abnormallydriven.architecturecomponentspost.data.UserDao;
 import com.abnormallydriven.architecturecomponentspost.data.entities.User;
@@ -14,7 +12,6 @@ import com.abnormallydriven.architecturecomponentspost.di.UI;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
-
 
 public class UserListViewModel extends ViewModel {
 
@@ -32,12 +29,12 @@ public class UserListViewModel extends ViewModel {
         usersMutableLiveData.setValue(new User[0]);
     }
 
-    public LiveData<User[]> getUsers(){
+    LiveData<User[]> getUsers(){
         return usersMutableLiveData;
     }
 
 
-    public void onRefreshUserList(){
+    void onRefreshUserList(){
         diskExecutor.execute(new Runnable() {
             @Override
             public void run() {

@@ -91,12 +91,7 @@ public class UserDaoTests {
 
     @NonNull
     private User getTestUser(String firstname, String lastName, int age, String gender) {
-        User testUser = new User();
-
-        testUser.setFirstName(firstname);
-        testUser.setLastName(lastName);
-        testUser.setAge(age);
-        testUser.setGender(gender);
+        User testUser = new User(firstname, lastName, age, gender);
         return testUser;
     }
 
