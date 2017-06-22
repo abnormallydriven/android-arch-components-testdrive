@@ -1,4 +1,4 @@
-package com.abnormallydriven.architecturecomponentspost.data.entities;
+package com.abnormallydriven.architecturecomponentspost.common.data.entities;
 
 
 import android.arch.persistence.room.Entity;

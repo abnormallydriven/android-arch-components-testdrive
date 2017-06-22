@@ -1,11 +1,11 @@
-package com.abnormallydriven.architecturecomponentspost.di;
+package com.abnormallydriven.architecturecomponentspost.common.di;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.abnormallydriven.architecturecomponentspost.data.MeasurementDao;
-import com.abnormallydriven.architecturecomponentspost.data.MeasurementDatabase;
-import com.abnormallydriven.architecturecomponentspost.data.UserDao;
+import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDao;
+import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDatabase;
+import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
 
 import javax.inject.Singleton;
 

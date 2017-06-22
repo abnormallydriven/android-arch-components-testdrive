@@ -1,4 +1,4 @@
-package com.abnormallydriven.architecturecomponentspost.data;
+package com.abnormallydriven.architecturecomponentspost.common.data;
 
 
 import android.arch.lifecycle.LiveData;
@@ -9,7 +9,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 
 @Dao
 public interface UserDao {

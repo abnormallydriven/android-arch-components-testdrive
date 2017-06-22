@@ -8,10 +8,11 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.abnormallydriven.architecturecomponentspost.R;
 import com.abnormallydriven.architecturecomponentspost.common.ApplicationViewModelFactory;
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.databinding.ActivityUserListBinding;
 
 import javax.inject.Inject;
@@ -52,6 +53,13 @@ public class UserListActivity extends AppCompatActivity implements LifecycleRegi
             @Override
             public void onChanged(@Nullable User[] users) {
                 userListAdapter.update(users);
+            }
+        });
+
+        binding.addUserFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userListViewModel.onUserAddClick();
             }
         });
 

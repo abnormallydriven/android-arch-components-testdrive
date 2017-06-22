@@ -1,4 +1,4 @@
-package com.abnormallydriven.architecturecomponentspost.data;
+package com.abnormallydriven.architecturecomponentspost.common.data;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,7 +7,7 @@ import android.support.test.InstrumentationRegistry;
 import com.abnormallydriven.architecturecomponentspost.LiveDataTestUtil;
 import com.abnormallydriven.architecturecomponentspost.common.di.DaggerTestApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.common.di.TestApplicationComponent;
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 
 import org.junit.After;
 import org.junit.Before;

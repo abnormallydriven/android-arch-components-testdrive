@@ -1,4 +1,4 @@
-package com.abnormallydriven.architecturecomponentspost.data;
+package com.abnormallydriven.architecturecomponentspost.common.data;
 
 
 import android.arch.persistence.room.Dao;
@@ -8,7 +8,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.abnormallydriven.architecturecomponentspost.data.entities.Measurement;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.Measurement;
 
 @Dao
 public interface MeasurementDao {

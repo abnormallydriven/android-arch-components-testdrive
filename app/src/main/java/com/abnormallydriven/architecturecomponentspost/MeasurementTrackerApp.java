@@ -4,9 +4,9 @@ package com.abnormallydriven.architecturecomponentspost;
 import android.app.Activity;
 import android.app.Application;
 
-import com.abnormallydriven.architecturecomponentspost.di.ApplicationComponent;
-import com.abnormallydriven.architecturecomponentspost.di.DaggerApplicationComponent;
-import com.abnormallydriven.architecturecomponentspost.di.DaggerInjector;
+import com.abnormallydriven.architecturecomponentspost.common.di.ApplicationComponent;
+import com.abnormallydriven.architecturecomponentspost.common.di.DaggerApplicationComponent;
+import com.abnormallydriven.architecturecomponentspost.common.di.DaggerInjector;
 
 import javax.inject.Inject;
 

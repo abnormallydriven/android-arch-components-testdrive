@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.databinding.AdapterItemUserBinding;
 
 import javax.inject.Inject;

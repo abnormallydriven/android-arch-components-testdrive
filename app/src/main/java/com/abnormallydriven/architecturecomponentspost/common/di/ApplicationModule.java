@@ -1,15 +1,11 @@
-package com.abnormallydriven.architecturecomponentspost.di;
+package com.abnormallydriven.architecturecomponentspost.common.di;
 
 
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
-
-import com.abnormallydriven.architecturecomponentspost.common.MainThreadExecutor;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
@@ -21,8 +17,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    static Resources provideResources(Application application){
-        return application.getResources();
+    static Resources provideResources(Context appContext){
+        return appContext.getResources();
     }
 
     @Provides

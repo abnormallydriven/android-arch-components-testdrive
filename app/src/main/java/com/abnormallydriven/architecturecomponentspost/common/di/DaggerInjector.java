@@ -1,4 +1,4 @@
-package com.abnormallydriven.architecturecomponentspost.di;
+package com.abnormallydriven.architecturecomponentspost.common.di;
 
 
 public final class DaggerInjector {

@@ -1,9 +1,9 @@
-package com.abnormallydriven.architecturecomponentspost.di;
+package com.abnormallydriven.architecturecomponentspost.common.di;
 
 
 import android.content.Context;
 
-import com.abnormallydriven.architecturecomponentspost.data.MeasurementDatabase;
+import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDatabase;
 import com.abnormallydriven.architecturecomponentspost.userlist.UserListActivityInjectorModule;
 
 import javax.inject.Singleton;

@@ -1,4 +1,4 @@
-package com.abnormallydriven.architecturecomponentspost.data;
+package com.abnormallydriven.architecturecomponentspost.common.data;
 
 
 import android.arch.persistence.room.TypeConverter;

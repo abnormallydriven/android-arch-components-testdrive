@@ -3,8 +3,9 @@ package com.abnormallydriven.architecturecomponentspost.userlist;
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.lifecycle.MutableLiveData;
 
-import com.abnormallydriven.architecturecomponentspost.data.UserDao;
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.NavigationController;
+import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.utils.SynchronousExecutor;
 
 import org.junit.Before;
@@ -26,14 +27,16 @@ public class UserListViewModelTest {
 
     UserListViewModel objectUnderTest;
     private UserDao mockDao;
+    private NavigationController mockNavController;
 
     @Before
     public void setup(){
         Executor synchronousExecutor = new SynchronousExecutor();
 
         mockDao = mock(UserDao.class);
+        mockNavController = mock(NavigationController.class);
 
-        objectUnderTest = new UserListViewModel(synchronousExecutor, synchronousExecutor, mockDao);
+        objectUnderTest = new UserListViewModel(synchronousExecutor, synchronousExecutor, mockNavController, mockDao);
     }
 
     @Test
@@ -60,6 +63,15 @@ public class UserListViewModelTest {
         verify(mockDao, times(1)).getAllUsers();
 
         assertArrayEquals(fakeUsers, returnedUsers);
+    }
+
+    @Test
+    public void onUserAddClick(){
+
+        objectUnderTest.onUserAddClick();
+
+        verify(mockNavController, times(1)).navigateToUserAdd();
+
     }
 
 }
