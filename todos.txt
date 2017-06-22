@@ -1,5 +1,5 @@
 
 
-setup recyclerview adapter, layout manager, and save/restore on rotation
-Migrate data and di into the common package
+user list activity layoutmanager save/restore
+UserAddActivity functionality
 
