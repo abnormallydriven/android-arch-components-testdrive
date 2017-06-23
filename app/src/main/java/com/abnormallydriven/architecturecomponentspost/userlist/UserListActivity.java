@@ -52,7 +52,11 @@ public class UserListActivity extends AppCompatActivity implements LifecycleRegi
         userListViewModel.getUsers().observe(this, new Observer<User[]>() {
             @Override
             public void onChanged(@Nullable User[] users) {
-                userListAdapter.update(users);
+                if(users != null){
+                    userListAdapter.update(users);
+                } else {
+                    userListAdapter.update(new User[0]);
+                }
             }
         });
 

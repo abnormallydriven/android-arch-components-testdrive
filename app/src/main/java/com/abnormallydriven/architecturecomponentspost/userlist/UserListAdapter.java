@@ -1,6 +1,7 @@
 package com.abnormallydriven.architecturecomponentspost.userlist;
 
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -12,14 +13,14 @@ import javax.inject.Inject;
 
 class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
 
-    User[] users;
+    private User[] users;
 
     @Inject
     UserListAdapter(){
         users = new User[0];
     }
 
-    public void update(User[] updatedUsers){
+    void update(@NonNull User[] updatedUsers){
         users = updatedUsers;
         //TODO user a diff util
         notifyDataSetChanged();

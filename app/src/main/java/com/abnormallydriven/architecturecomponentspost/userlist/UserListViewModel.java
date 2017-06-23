@@ -2,7 +2,9 @@ package com.abnormallydriven.architecturecomponentspost.userlist;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
+import android.support.annotation.Nullable;
 
 import com.abnormallydriven.architecturecomponentspost.common.NavigationController;
 import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
@@ -44,11 +46,12 @@ public class UserListViewModel extends ViewModel {
         diskExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                final User[] latestUsers = userDao.getAllUsers().getValue();
-                uiExecutor.execute(new Runnable() {
+                final LiveData<User[]> liveData = userDao.getAllUsers();
+                liveData.observeForever(new Observer<User[]>() {
                     @Override
-                    public void run() {
-                        usersMutableLiveData.setValue(latestUsers);
+                    public void onChanged(@Nullable User[] users) {
+                        usersMutableLiveData.setValue(users);
+                        liveData.removeObserver(this);
                     }
                 });
             }
