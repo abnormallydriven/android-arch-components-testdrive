@@ -22,13 +22,16 @@ public class MeasurementTrackerApp extends Application  implements HasActivityIn
     @Override
     public void onCreate() {
         super.onCreate();
+        initializeDaggerInjector();
+        DaggerInjector.getAppComponent().inject(this);
+    }
 
+    protected void initializeDaggerInjector() {
         ApplicationComponent applicationComponent = DaggerApplicationComponent.builder()
             .applicationContext(this)
             .build();
-        
+
         DaggerInjector.initializeComponent(applicationComponent);
-        DaggerInjector.getAppComponent().inject(this);
     }
 
     @Override
