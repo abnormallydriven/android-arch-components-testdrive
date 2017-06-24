@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        >
+
+    <data>
+
+        <variable
+                name="labelText"
+                type="String"/>
+
+        <variable
+            name="measurementValue"
+            type="android.databinding.ObservableFloat"/>
+
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/measurement_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Right Calf"
+                android:text="@{labelText}"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintBaseline_toBaselineOf="@+id/measurement_value"/>
+
+
+        <EditText
+                android:id="@+id/measurement_value"
+                tools:text="23.4"
+                android:text="@={measurementValue}"
+                android:inputType="numberDecimal"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="8dp"
+                tools:layout_editor_absoluteX="333dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="72dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textAlignment="center"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
