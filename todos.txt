@@ -1,5 +1,4 @@
 
 
-user list activity layoutmanager save/restore
-UserAddActivity functionality
-
+View User Stats Screen
+Add User Stat Screen

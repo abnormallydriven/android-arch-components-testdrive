@@ -21,6 +21,8 @@
                 android:name=".adduser.AddUserActivity"
                 android:parentActivityName=".userlist.UserListActivity">
         </activity>
+        <activity android:name=".addmeasurements.AddMeasurementsActivity">
+        </activity>
     </application>
 
 </manifest>
