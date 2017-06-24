@@ -3,6 +3,7 @@ package com.abnormallydriven.architecturecomponentspost;
 
 import android.app.Activity;
 import android.app.Application;
+import android.os.StrictMode;
 
 import com.abnormallydriven.architecturecomponentspost.common.di.ApplicationComponent;
 import com.abnormallydriven.architecturecomponentspost.common.di.DaggerApplicationComponent;
@@ -21,6 +22,20 @@ public class MeasurementTrackerApp extends Application  implements HasActivityIn
 
     @Override
     public void onCreate() {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
         super.onCreate();
         initializeDaggerInjector();
         DaggerInjector.getAppComponent().inject(this);
