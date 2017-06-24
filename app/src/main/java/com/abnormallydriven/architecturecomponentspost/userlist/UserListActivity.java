@@ -44,8 +44,8 @@ public class UserListActivity extends AppCompatActivity implements LifecycleRegi
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        setupView();
         setupViewModel(savedInstanceState);
+        setupView();
     }
 
     private void setupViewModel(Bundle savedInstanceState) {

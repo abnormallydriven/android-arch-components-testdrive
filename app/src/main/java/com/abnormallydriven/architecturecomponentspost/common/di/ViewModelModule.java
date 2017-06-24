@@ -4,6 +4,7 @@ package com.abnormallydriven.architecturecomponentspost.common.di;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
+import com.abnormallydriven.architecturecomponentspost.adduser.AddUserViewModel;
 import com.abnormallydriven.architecturecomponentspost.common.ApplicationViewModelFactory;
 import com.abnormallydriven.architecturecomponentspost.userlist.UserListViewModel;
 
@@ -18,6 +19,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelMapKey(UserListViewModel.class)
     abstract ViewModel bindUserListViewModel(UserListViewModel userListViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelMapKey(AddUserViewModel.class)
+    abstract ViewModel bindAddUserViewModel(AddUserViewModel addUserViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ApplicationViewModelFactory viewModelFactory);

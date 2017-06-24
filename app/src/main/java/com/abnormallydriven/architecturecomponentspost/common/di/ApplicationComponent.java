@@ -4,6 +4,7 @@ package com.abnormallydriven.architecturecomponentspost.common.di;
 import android.content.Context;
 
 import com.abnormallydriven.architecturecomponentspost.MeasurementTrackerApp;
+import com.abnormallydriven.architecturecomponentspost.adduser.AddUserActivityInjectorModule;
 import com.abnormallydriven.architecturecomponentspost.userlist.UserListActivityInjectorModule;
 
 import javax.inject.Singleton;
@@ -17,7 +18,8 @@ import dagger.android.AndroidInjectionModule;
         AndroidInjectionModule.class,
         DatabaseModule.class,
         ApplicationModule.class,
-        UserListActivityInjectorModule.class})
+        UserListActivityInjectorModule.class,
+        AddUserActivityInjectorModule.class})
 public interface ApplicationComponent {
 
     void inject(MeasurementTrackerApp measurementTrackerApp);
