@@ -1,5 +1,8 @@
 
 
-setup recyclerview adapter, layout manager, and save/restore on rotation
-Migrate data and di into the common package
-
+Espresso tests for the add user screen
+clear data when necessary in viewmodels, they are singletons, could they have their scope taken away?
+View User Stats Screen
+Add User Stat Screen
+Add measurement screen date picker in actionbar as a dialog
+use a number picker for age instead of a text field

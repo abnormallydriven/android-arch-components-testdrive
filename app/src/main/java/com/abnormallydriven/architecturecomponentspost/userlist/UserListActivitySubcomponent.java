@@ -7,5 +7,5 @@ import dagger.android.AndroidInjector;
 public interface UserListActivitySubcomponent extends AndroidInjector<UserListActivity> {
 
     @Subcomponent.Builder
-    public abstract class Builder extends AndroidInjector.Builder<UserListActivity>{}
+    abstract class Builder extends AndroidInjector.Builder<UserListActivity>{}
 }

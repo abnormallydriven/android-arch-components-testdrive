@@ -2,7 +2,7 @@ package com.abnormallydriven.architecturecomponentspost.userlist;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.databinding.AdapterItemUserBinding;
 
 class UserViewHolder extends RecyclerView.ViewHolder {

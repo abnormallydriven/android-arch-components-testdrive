@@ -6,10 +6,11 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
 
-import com.abnormallydriven.architecturecomponentspost.data.UserDao;
-import com.abnormallydriven.architecturecomponentspost.data.entities.User;
-import com.abnormallydriven.architecturecomponentspost.di.Disk;
-import com.abnormallydriven.architecturecomponentspost.di.UI;
+import com.abnormallydriven.architecturecomponentspost.common.NavigationController;
+import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
+import com.abnormallydriven.architecturecomponentspost.common.di.Disk;
+import com.abnormallydriven.architecturecomponentspost.common.di.UI;
 
 import java.util.concurrent.Executor;
 
@@ -19,13 +20,18 @@ public class UserListViewModel extends ViewModel {
 
     private final Executor diskExecutor;
     private final Executor uiExecutor;
+    private final NavigationController navigationController;
     private final UserDao userDao;
     private final MutableLiveData<User[]> usersMutableLiveData;
 
     @Inject
-    UserListViewModel(@Disk Executor diskExecutor, @UI Executor uiExecutor, final UserDao userDao){
+    UserListViewModel(@Disk Executor diskExecutor,
+                      @UI Executor uiExecutor,
+                      NavigationController navigationController,
+                      final UserDao userDao){
         this.diskExecutor = diskExecutor;
         this.uiExecutor = uiExecutor;
+        this.navigationController = navigationController;
         this.userDao = userDao;
         usersMutableLiveData = new MutableLiveData<>();
         usersMutableLiveData.setValue(new User[0]);
@@ -40,15 +46,19 @@ public class UserListViewModel extends ViewModel {
         diskExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                final User[] latestUsers = userDao.getAllUsers().getValue();
-                uiExecutor.execute(new Runnable() {
+                final LiveData<User[]> liveData = userDao.getAllUsers();
+                liveData.observeForever(new Observer<User[]>() {
                     @Override
-                    public void run() {
-                        usersMutableLiveData.setValue(latestUsers);
+                    public void onChanged(@Nullable User[] users) {
+                        usersMutableLiveData.setValue(users);
+                        liveData.removeObserver(this);
                     }
                 });
             }
         });
     }
 
+    void onUserAddClick() {
+        navigationController.navigateToUserAdd();
+    }
 }

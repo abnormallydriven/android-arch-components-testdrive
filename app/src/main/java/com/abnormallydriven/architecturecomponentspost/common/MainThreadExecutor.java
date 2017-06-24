@@ -4,7 +4,7 @@ package com.abnormallydriven.architecturecomponentspost.common;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-import com.abnormallydriven.architecturecomponentspost.di.UI;
+import com.abnormallydriven.architecturecomponentspost.common.di.UI;
 
 import java.util.concurrent.Executor;
 
