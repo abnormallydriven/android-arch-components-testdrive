@@ -1,15 +1,28 @@
 package com.abnormallydriven.architecturecomponentspost.adduser;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.abnormallydriven.architecturecomponentspost.R;
 
-public class AddUserActivity extends AppCompatActivity {
+import javax.inject.Inject;
+
+public class AddUserActivity extends AppCompatActivity implements LifecycleOwner {
+
+    @Inject
+    LifecycleRegistry lifecycleRegistry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+    }
+
+    @Override
+    public Lifecycle getLifecycle() {
+        return lifecycleRegistry;
     }
 }
