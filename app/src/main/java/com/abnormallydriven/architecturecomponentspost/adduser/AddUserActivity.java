@@ -5,7 +5,9 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.databinding.Observable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -31,6 +33,7 @@ public class AddUserActivity extends AppCompatActivity implements LifecycleOwner
 
     @Nullable
     private ActivityAddUserBinding binding;
+    private Observable.OnPropertyChangedCallback snackbarMessageObserver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,27 @@ public class AddUserActivity extends AppCompatActivity implements LifecycleOwner
 
     private void setupViewModel() {
         addUserViewModel = ViewModelProviders.of(this, applicationViewModelFactory).get(AddUserViewModel.class);
+
+        if(addUserViewModel != null){
+            snackbarMessageObserver = new Observable.OnPropertyChangedCallback() {
+                @Override
+                public void onPropertyChanged(Observable observable, int i) {
+                    showSaveDataSuccess();
+                }
+            };
+            addUserViewModel.getShouldShowSavedSuccessMessage().addOnPropertyChangedCallback(snackbarMessageObserver);
+
+            if(addUserViewModel.getShouldShowSavedSuccessMessage().get()){
+                showSaveDataSuccess();
+            }
+        }
+    }
+
+    private void showSaveDataSuccess() {
+        if (addUserViewModel != null) {
+            addUserViewModel.onShowSaveSuccessMessage();
+        }
+        Snackbar.make(binding.getRoot(), "User saved successfully!", Snackbar.LENGTH_LONG).show();
     }
 
     private void setupView() {
@@ -50,11 +74,21 @@ public class AddUserActivity extends AppCompatActivity implements LifecycleOwner
         binding.saveUserFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(addUserViewModel != null){
+                    addUserViewModel.onAddUserClick();
+                }
             }
         });
 
         binding.setViewModel(addUserViewModel);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (addUserViewModel != null) {
+            addUserViewModel.getShouldShowSavedSuccessMessage().removeOnPropertyChangedCallback(snackbarMessageObserver);
+        }
+        super.onDestroy();
     }
 
     @Override
