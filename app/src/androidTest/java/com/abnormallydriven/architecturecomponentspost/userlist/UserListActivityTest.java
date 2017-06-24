@@ -8,6 +8,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.abnormallydriven.architecturecomponentspost.LiveDataTestUtil;
 import com.abnormallydriven.architecturecomponentspost.R;
+import com.abnormallydriven.architecturecomponentspost.RecyclerViewMatcher;
 import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
 import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.common.di.DaggerInjector;
@@ -21,8 +22,10 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
@@ -64,6 +67,10 @@ public class UserListActivityTest {
         int adapterItemCount = userListActivityActivityTestRule.getActivity().userListAdapter.getItemCount();
 
         assertEquals(userList.length, adapterItemCount);
+        onView(new RecyclerViewMatcher(R.id.user_list_recycler_view).atPosition(0))
+                .check(matches(hasDescendant(withText("Brett Tucker"))));
+
+        onView(withId(R.id.add_user_fab)).check(matches(isDisplayed()));
     }
 
 

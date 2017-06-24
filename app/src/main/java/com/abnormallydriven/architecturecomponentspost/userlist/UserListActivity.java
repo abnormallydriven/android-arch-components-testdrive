@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.abnormallydriven.architecturecomponentspost.R;
@@ -30,6 +31,9 @@ public class UserListActivity extends AppCompatActivity implements LifecycleRegi
     @Inject
     UserListAdapter userListAdapter;
 
+    @Inject
+    LinearLayoutManager linearLayoutManager;
+
     @Nullable
     private UserListViewModel userListViewModel;
 
@@ -40,9 +44,11 @@ public class UserListActivity extends AppCompatActivity implements LifecycleRegi
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        setupView();
+        setupViewModel(savedInstanceState);
+    }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_user_list);
-
+    private void setupViewModel(Bundle savedInstanceState) {
         userListViewModel = ViewModelProviders.of(this, applicationViewModelFactory).get(UserListViewModel.class);
 
         if(null == savedInstanceState){
@@ -60,17 +66,46 @@ public class UserListActivity extends AppCompatActivity implements LifecycleRegi
             }
         });
 
+
+    }
+
+    private void setupView() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_user_list);
+
+        binding.userListRecyclerView.setLayoutManager(linearLayoutManager);
+        binding.userListRecyclerView.setAdapter(userListAdapter);
+
         binding.addUserFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userListViewModel.onUserAddClick();
+                if (userListViewModel != null) {
+                    userListViewModel.onUserAddClick();
+                }
             }
         });
-
     }
 
     @Override
     public LifecycleRegistry getLifecycle() {
         return lifeCycleRegistry;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("layoutManagerState", linearLayoutManager.onSaveInstanceState());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        linearLayoutManager.onRestoreInstanceState(savedInstanceState);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        binding.userListRecyclerView.setAdapter(null);
+        super.onDestroy();
     }
 }
