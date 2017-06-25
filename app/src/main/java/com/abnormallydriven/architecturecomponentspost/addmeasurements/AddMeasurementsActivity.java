@@ -44,21 +44,6 @@ public class AddMeasurementsActivity extends AppCompatActivity implements Lifecy
     private void setupView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_measurements);
 
-        viewModel.getMeasurement().observe(this, new Observer<Measurement>() {
-            @Override
-            public void onChanged(@android.support.annotation.Nullable Measurement measurement) {
-
-                if(measurement == null){
-
-                }
-
-                binding.lowerLeftBicepContainer.measurementValue.setText(String.valueOf(measurement.getLowerLeftBicep()));
-                binding.lowerRightBicepContainer.measurementValue.setText(String.valueOf(measurement.getLowerRightBicep()));
-
-
-            }
-        });
-
     }
 
     private void setupViewModel() {
