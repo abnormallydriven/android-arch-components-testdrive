@@ -6,7 +6,9 @@ import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -43,7 +45,26 @@ public class AddMeasurementsActivity extends AppCompatActivity implements Lifecy
 
     private void setupView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_measurements);
+        binding.setViewModel(viewModel);
 
+        viewModel.shouldShowSaveSuccessMessage.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if(viewModel.shouldShowSaveSuccessMessage.get()){
+                    showMeasurementSavedMessage();
+                }
+            }
+        });
+
+        if(viewModel.shouldShowSaveSuccessMessage.get()){
+            showMeasurementSavedMessage();
+        }
+
+    }
+
+    private void showMeasurementSavedMessage() {
+        viewModel.shouldShowSaveSuccessMessage.set(false);
+        Snackbar.make(binding.getRoot(), "Measurement Saved Successfully!", Snackbar.LENGTH_INDEFINITE).show();
     }
 
     private void setupViewModel() {

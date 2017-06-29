@@ -50,7 +50,9 @@ public class AddUserActivity extends AppCompatActivity implements LifecycleOwner
             snackbarMessageObserver = new Observable.OnPropertyChangedCallback() {
                 @Override
                 public void onPropertyChanged(Observable observable, int i) {
-                    showSaveDataSuccess();
+                    if(addUserViewModel.getShouldShowSavedSuccessMessage().get()){
+                        showSaveDataSuccess();
+                    }
                 }
             };
             addUserViewModel.getShouldShowSavedSuccessMessage().addOnPropertyChangedCallback(snackbarMessageObserver);

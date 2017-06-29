@@ -1,6 +1,7 @@
 package com.abnormallydriven.architecturecomponentspost.addmeasurements;
 
 import android.arch.lifecycle.ViewModel;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableFloat;
 import android.support.annotation.NonNull;
 
@@ -16,6 +17,8 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+//TODO tests
+
 @Singleton
 public class AddMeasurementsViewModel extends ViewModel {
 
@@ -24,6 +27,8 @@ public class AddMeasurementsViewModel extends ViewModel {
 
     @NonNull
     private final Executor diskExecutor;
+
+    @NonNull
     private final MeasurementDao measurementDao;
 
     @NonNull
@@ -40,11 +45,13 @@ public class AddMeasurementsViewModel extends ViewModel {
 
     @NonNull
     private final ObservableFloat leftCalf;
+
     @NonNull
     private final ObservableFloat rightCalf;
 
     @NonNull
     private final ObservableFloat chest;
+
     @NonNull
     private final ObservableFloat leftForearm;
 
@@ -59,31 +66,46 @@ public class AddMeasurementsViewModel extends ViewModel {
 
     @NonNull
     private final ObservableFloat lowerLeftThigh;
+
     @NonNull
     private final ObservableFloat lowerRightThigh;
+
     @NonNull
     private final ObservableFloat midLeftThigh;
+
     @NonNull
     private final ObservableFloat midRightThigh;
+
     @NonNull
     private final ObservableFloat upperLeftThigh;
+
     @NonNull
     private final ObservableFloat upperRightThigh;
+
     @NonNull
     private final ObservableFloat abdominalWaist;
+
     @NonNull
     private final ObservableFloat lowerWaist;
+
     @NonNull
     private final ObservableFloat narrowestWaist;
 
+    @NonNull
+    public final ObservableBoolean shouldShowProgressSpinner;
+
+    @NonNull
+    public final ObservableBoolean shouldShowSaveSuccessMessage;
 
     @Inject
     public AddMeasurementsViewModel(@UI @NonNull Executor uiExecutor,
                                     @Disk @NonNull Executor diskExecutor,
-                                    MeasurementDao measurementDao){
+                                    MeasurementDao measurementDao) {
         this.uiExecutor = uiExecutor;
         this.diskExecutor = diskExecutor;
         this.measurementDao = measurementDao;
+        this.shouldShowProgressSpinner = new ObservableBoolean(false);
+        this.shouldShowSaveSuccessMessage = new ObservableBoolean(false);
 
         lowerLeftBicep = new ObservableFloat(0.0f);
         lowerRightBicep = new ObservableFloat(0.0f);
@@ -208,9 +230,8 @@ public class AddMeasurementsViewModel extends ViewModel {
         return narrowestWaist;
     }
 
-    public void onSaveMeasurementForUserClick(final User user){
-
-        //TODO flip boolean showing a loading spinner
+    void onSaveMeasurementForUserClick(final User user) {
+        shouldShowProgressSpinner.set(true);
 
         diskExecutor.execute(new Runnable() {
             @Override
@@ -242,12 +263,33 @@ public class AddMeasurementsViewModel extends ViewModel {
 
                 measurementDao.insertMeasurements(newMeasurement);
 
-                //TODO finish implementation and add tests
 
                 uiExecutor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        //TODO flip boolean to show that we are done saving to disk
+                        shouldShowProgressSpinner.set(false);
+                        shouldShowSaveSuccessMessage.set(true);
+
+                        lowerLeftBicep.set(0.0f);
+                        lowerRightBicep.set(0.0f);
+                        rightBicep.set(0.0f);
+                        leftBicep.set(0.0f);
+                        leftCalf.set(0.0f);
+                        rightCalf.set(0.0f);
+                        chest.set(0.0f);
+                        leftForearm.set(0.0f);
+                        rightForearm.set(0.0f);
+                        highHip.set(0.0f);
+                        hip.set(0.0f);
+                        lowerRightThigh.set(0.0f);
+                        lowerLeftThigh.set(0.0f);
+                        midLeftThigh.set(0.0f);
+                        midRightThigh.set(0.0f);
+                        upperLeftThigh.set(0.0f);
+                        upperRightThigh.set(0.0f);
+                        abdominalWaist.set(0.0f);
+                        lowerWaist.set(0.0f);
+                        narrowestWaist.set(0.0f);
                     }
                 });
 
