@@ -42,22 +42,26 @@
                 <include
                         android:id="@+id/lower_left_bicep_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Lower Left Bicep`}"
                         app:measurementValue="@{viewModel.lowerLeftBicep}"/>
 
                 <include
                         android:id="@+id/lower_right_bicep_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Lower Right Bicep`}"
                         app:measurementValue="@{viewModel.lowerRightBicep}"/>
 
                 <include
                         android:id="@+id/left_bicep_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Left Bicep`}"
                         app:measurementValue="@{viewModel.leftBicep}"
                         />
 
                 <include
                         android:id="@+id/right_bicep_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Right Bicep`}"
                         app:measurementValue="@{viewModel.rightBicep}"
                         />
 
@@ -65,84 +69,100 @@
                 <include
                         android:id="@+id/left_calf_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Left Calf`}"
                         app:measurementValue="@{viewModel.leftCalf}"
                         />
 
                 <include
                         android:id="@+id/right_calf_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Right Calf`}"
                         app:measurementValue="@{viewModel.rightCalf}"
                         />
 
                 <include
                         android:id="@+id/chest_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Chest`}"
                         app:measurementValue="@{viewModel.chest}"/>
 
                 <include
                         android:id="@+id/left_forearm_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Left Forearm`}"
                         app:measurementValue="@{viewModel.leftForearm}"/>
 
                 <include
                         android:id="@+id/right_forearm_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Right Forearm`}"
                         app:measurementValue="@{viewModel.rightForearm}"/>
 
                 <include
                         android:id="@+id/high_hip_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`High Hip`}"
                         app:measurementValue="@{viewModel.highHip}"/>
 
                 <include
                         android:id="@+id/hip_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Hip`}"
                         app:measurementValue="@{viewModel.hip}"/>
 
                 <include
                         android:id="@+id/lower_left_thigh_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Lower Left Thigh`}"
                         app:measurementValue="@{viewModel.lowerLeftThigh}"/>
 
                 <include
                         android:id="@+id/lower_right_thigh_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Lower Right Thigh`}"
                         app:measurementValue="@{viewModel.lowerRightThigh}"/>
 
                 <include
                         android:id="@+id/mid_left_thigh_container"
                         layout="@layout/add_measurement_row"
-                        app:measurementValue="@{viewModel.lowerLeftThigh}"/>
+                        app:labelText="@{`Mid Left Thigh`}"
+                        app:measurementValue="@{viewModel.midLeftThigh}"/>
 
                 <include
                         android:id="@+id/mid_right_thigh_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Mid Right Thigh`}"
                         app:measurementValue="@{viewModel.midRightThigh}"/>
 
 
                 <include
                         android:id="@+id/upper_left_thigh_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Upper Left Thigh`}"
                         app:measurementValue="@{viewModel.upperLeftThigh}"/>
 
                 <include
                         android:id="@+id/upper_right_thigh_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Upper Right Thigh`}"
                         app:measurementValue="@{viewModel.upperRightThigh}"/>
 
                 <include
                         android:id="@+id/abdominal_waist_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Abdominal Waist`}"
                         app:measurementValue="@{viewModel.abdominalWaist}"/>
 
                 <include
                         android:id="@+id/lower_waist_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Lower Waist`}"
                         app:measurementValue="@{viewModel.lowerWaist}"/>
 
                 <include
                         android:id="@+id/narrowest_waist_container"
                         layout="@layout/add_measurement_row"
+                        app:labelText="@{`Narrowest Waist`}"
                         app:measurementValue="@{viewModel.narrowestWaist}"/>
 
 

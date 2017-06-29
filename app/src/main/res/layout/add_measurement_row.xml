@@ -6,13 +6,15 @@
 
     <data>
 
+        <import type="com.abnormallydriven.architecturecomponentspost.common.BindingAdapters"/>
+
         <variable
                 name="labelText"
                 type="String"/>
 
         <variable
             name="measurementValue"
-            type="android.databinding.ObservableFloat"/>
+            type="Float"/>
 
     </data>
 
@@ -22,7 +24,7 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:id="@+id/measurement_label"
+                android:id="@+id/measurement_label_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Right Calf"
@@ -30,17 +32,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:layout_constraintBaseline_toBaselineOf="@+id/measurement_value"/>
+                app:layout_constraintBaseline_toBaselineOf="@+id/measurement_value_edit_text"/>
 
 
         <EditText
-                android:id="@+id/measurement_value"
+                android:id="@+id/measurement_value_edit_text"
                 tools:text="23.4"
-                android:text="@={measurementValue}"
+                android:text="@={BindingAdapters.convertFloatToString(measurementValueEditText, measurementValue)}"
                 android:inputType="numberDecimal"
                 android:layout_height="wrap_content"
                 tools:layout_editor_absoluteY="8dp"
                 tools:layout_editor_absoluteX="333dp"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"

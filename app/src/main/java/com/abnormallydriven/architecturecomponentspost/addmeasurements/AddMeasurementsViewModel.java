@@ -4,9 +4,13 @@ import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableFloat;
 import android.support.annotation.NonNull;
 
+import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDao;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.Measurement;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.common.di.Disk;
 import com.abnormallydriven.architecturecomponentspost.common.di.UI;
 
+import java.util.Date;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
@@ -20,6 +24,7 @@ public class AddMeasurementsViewModel extends ViewModel {
 
     @NonNull
     private final Executor diskExecutor;
+    private final MeasurementDao measurementDao;
 
     @NonNull
     private final ObservableFloat lowerLeftBicep;
@@ -73,9 +78,12 @@ public class AddMeasurementsViewModel extends ViewModel {
 
 
     @Inject
-    public AddMeasurementsViewModel(@UI @NonNull Executor uiExecutor, @Disk @NonNull Executor diskExecutor){
+    public AddMeasurementsViewModel(@UI @NonNull Executor uiExecutor,
+                                    @Disk @NonNull Executor diskExecutor,
+                                    MeasurementDao measurementDao){
         this.uiExecutor = uiExecutor;
         this.diskExecutor = diskExecutor;
+        this.measurementDao = measurementDao;
 
         lowerLeftBicep = new ObservableFloat(0.0f);
         lowerRightBicep = new ObservableFloat(0.0f);
@@ -198,5 +206,53 @@ public class AddMeasurementsViewModel extends ViewModel {
     @NonNull
     public ObservableFloat getNarrowestWaist() {
         return narrowestWaist;
+    }
+
+    public void onSaveMeasurementForUserClick(final User user){
+
+        //TODO flip boolean showing a loading spinner
+
+        diskExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Measurement newMeasurement = new Measurement();
+
+                newMeasurement.setLowerLeftBicep(lowerLeftBicep.get());
+                newMeasurement.setLowerRightBicep(lowerRightBicep.get());
+                newMeasurement.setLeftBicep(leftBicep.get());
+                newMeasurement.setRightBicep(rightBicep.get());
+                newMeasurement.setLeftCalf(leftCalf.get());
+                newMeasurement.setRightCalf(rightCalf.get());
+                newMeasurement.setChest(chest.get());
+                newMeasurement.setLeftForearm(leftForearm.get());
+                newMeasurement.setRightForearm(rightForearm.get());
+                newMeasurement.setHighHip(highHip.get());
+                newMeasurement.setHighHip(hip.get());
+                newMeasurement.setLowerLeftThigh(lowerLeftThigh.get());
+                newMeasurement.setLowerRightThigh(lowerRightThigh.get());
+                newMeasurement.setMidLeftThigh(midLeftThigh.get());
+                newMeasurement.setMidRightThigh(midRightThigh.get());
+                newMeasurement.setUpperLeftThigh(upperLeftThigh.get());
+                newMeasurement.setUpperRightThigh(upperRightThigh.get());
+                newMeasurement.setAbdominalWaist(abdominalWaist.get());
+                newMeasurement.setLowerWaist(lowerWaist.get());
+                newMeasurement.setNarrowestWaist(narrowestWaist.get());
+                newMeasurement.setMeasurementDate(new Date());
+                newMeasurement.setUserId(user.getId());
+
+                measurementDao.insertMeasurements(newMeasurement);
+
+                //TODO finish implementation and add tests
+
+                uiExecutor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        //TODO flip boolean to show that we are done saving to disk
+                    }
+                });
+
+
+            }
+        });
     }
 }

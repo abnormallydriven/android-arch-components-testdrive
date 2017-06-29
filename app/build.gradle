@@ -64,6 +64,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android:${DAGGER_VERSION}"
     implementation "com.google.dagger:dagger-android-support:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    annotationProcessor "com.google.dagger:dagger-android-processor:${DAGGER_VERSION}"
     provided 'javax.annotation:jsr250-api:1.0'
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 

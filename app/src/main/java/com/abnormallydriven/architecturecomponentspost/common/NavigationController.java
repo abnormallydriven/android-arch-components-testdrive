@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.abnormallydriven.architecturecomponentspost.addmeasurements.AddMeasurementsActivity;
 import com.abnormallydriven.architecturecomponentspost.adduser.AddUserActivity;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -25,8 +26,10 @@ public class NavigationController {
         appContext.startActivity(new Intent(appContext, AddUserActivity.class));
     }
 
-    public void navigateToAddMeasurement(){
-        appContext.startActivity(new Intent(appContext, AddMeasurementsActivity.class));
+    public void navigateToAddMeasurement(User selectedUser){
+        Intent intent = new Intent(appContext, AddMeasurementsActivity.class);
+        intent.putExtra("user", selectedUser);
+        appContext.startActivity(intent);
     }
 
 }
