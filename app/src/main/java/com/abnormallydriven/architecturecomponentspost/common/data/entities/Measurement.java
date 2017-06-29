@@ -60,7 +60,7 @@ public class Measurement {
 
     private Date measurementDate;
 
-    private int userId;
+    private long userId;
 
     public long getId() {
         return id;
@@ -238,11 +238,11 @@ public class Measurement {
         this.measurementDate = measurementDate;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 }

@@ -3,9 +3,11 @@ package com.abnormallydriven.architecturecomponentspost.common.data.entities;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 @Entity(tableName = "users")
-public class User {
+public class User implements Parcelable{
 
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -24,6 +26,40 @@ public class User {
         this.age = age;
         this.gender = gender;
     }
+
+    protected User(Parcel in) {
+        id = in.readLong();
+        firstName = in.readString();
+        lastName = in.readString();
+        age = in.readInt();
+        gender = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
+        dest.writeInt(age);
+        dest.writeString(gender);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public long getId() {
         return id;
