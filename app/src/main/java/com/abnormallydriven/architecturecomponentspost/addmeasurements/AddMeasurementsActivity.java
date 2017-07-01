@@ -3,6 +3,7 @@ package com.abnormallydriven.architecturecomponentspost.addmeasurements;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -22,7 +23,7 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class AddMeasurementsActivity extends AppCompatActivity implements LifecycleOwner {
+public class AddMeasurementsActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
     @Inject
     LifecycleRegistry lifecycleRegistry;
@@ -72,7 +73,7 @@ public class AddMeasurementsActivity extends AppCompatActivity implements Lifecy
     }
 
     @Override
-    public Lifecycle getLifecycle() {
-        return null;
+    public LifecycleRegistry getLifecycle() {
+        return lifecycleRegistry;
     }
 }

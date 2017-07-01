@@ -3,6 +3,7 @@ package com.abnormallydriven.architecturecomponentspost.adduser;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
@@ -20,7 +21,7 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 
-public class AddUserActivity extends AppCompatActivity implements LifecycleOwner {
+public class AddUserActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 
     @Inject
     LifecycleRegistry lifecycleRegistry;
@@ -94,7 +95,7 @@ public class AddUserActivity extends AppCompatActivity implements LifecycleOwner
     }
 
     @Override
-    public Lifecycle getLifecycle() {
+    public LifecycleRegistry getLifecycle() {
         return lifecycleRegistry;
     }
 }
