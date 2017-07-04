@@ -43,6 +43,7 @@ public class UserListViewModel extends ViewModel {
 
 
     void onRefreshUserList(){
+        //TODO spinners
         diskExecutor.execute(new Runnable() {
             @Override
             public void run() {

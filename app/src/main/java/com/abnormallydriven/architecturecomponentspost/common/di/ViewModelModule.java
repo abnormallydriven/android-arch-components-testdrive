@@ -8,6 +8,7 @@ import com.abnormallydriven.architecturecomponentspost.addmeasurements.AddMeasur
 import com.abnormallydriven.architecturecomponentspost.adduser.AddUserViewModel;
 import com.abnormallydriven.architecturecomponentspost.common.ApplicationViewModelFactory;
 import com.abnormallydriven.architecturecomponentspost.userlist.UserListViewModel;
+import com.abnormallydriven.architecturecomponentspost.usermeasurements.UserMeasurementViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -30,6 +31,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelMapKey(AddUserViewModel.class)
     abstract ViewModel bindAddUserViewModel(AddUserViewModel addUserViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelMapKey(UserMeasurementViewModel.class)
+    abstract ViewModel bindUserMeasurementViewModel(UserMeasurementViewModel userMeasurementViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ApplicationViewModelFactory viewModelFactory);
