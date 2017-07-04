@@ -58,6 +58,8 @@ public class Measurement {
 
     private float narrowestWaist;
 
+    private float weight;
+
     private Date measurementDate;
 
     private long userId;
@@ -244,5 +246,13 @@ public class Measurement {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 }
