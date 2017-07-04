@@ -4,6 +4,7 @@ package com.abnormallydriven.architecturecomponentspost.userlist;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
@@ -13,10 +14,12 @@ import javax.inject.Inject;
 
 class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
 
+    private final UserListViewModel userListViewModel;
     private User[] users;
 
     @Inject
-    UserListAdapter(){
+    UserListAdapter(UserListViewModel userListViewModel){
+        this.userListViewModel = userListViewModel;
         users = new User[0];
     }
 
@@ -30,7 +33,17 @@ class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         AdapterItemUserBinding userItemBinding = AdapterItemUserBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new UserViewHolder(userItemBinding);
+        final UserViewHolder userViewHolder = new UserViewHolder(userItemBinding);
+
+        userItemBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User selectedUser = users[userViewHolder.getAdapterPosition()];
+                userListViewModel.onUserSelectedClick(selectedUser);
+            }
+        });
+
+        return userViewHolder;
     }
 
     @Override

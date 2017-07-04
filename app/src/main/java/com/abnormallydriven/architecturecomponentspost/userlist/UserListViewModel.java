@@ -62,4 +62,8 @@ public class UserListViewModel extends ViewModel {
     void onUserAddClick() {
         navigationController.navigateToUserAdd();
     }
+
+    void onUserSelectedClick(User selectedUser) {
+        navigationController.navigateToUserMeasurements(selectedUser);
+    }
 }
