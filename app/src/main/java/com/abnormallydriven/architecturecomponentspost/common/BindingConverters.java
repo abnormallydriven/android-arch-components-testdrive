@@ -15,4 +15,9 @@ public class BindingConverters {
         return SIMPLE_DATE_FORMAT.format(date);
     }
 
+    @BindingConversion
+    public static String convertFloat(float someFloat){
+        return String.valueOf(someFloat);
+    }
+
 }
