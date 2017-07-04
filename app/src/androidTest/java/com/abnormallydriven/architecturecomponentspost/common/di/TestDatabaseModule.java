@@ -6,6 +6,7 @@ import android.content.Context;
 import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDao;
 import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDatabase;
 import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
+import com.abnormallydriven.architecturecomponentspost.common.data.migrations.Migration1To2;
 
 import javax.inject.Singleton;
 
@@ -18,7 +19,9 @@ public class TestDatabaseModule {
     @Singleton
     @Provides
     static MeasurementDatabase provideMeasurementDatabase(Context appContext){
-        return Room.inMemoryDatabaseBuilder(appContext, MeasurementDatabase.class).build();
+        return Room.inMemoryDatabaseBuilder(appContext, MeasurementDatabase.class)
+                .addMigrations(new Migration1To2(1,2))
+                .build();
     }
 
     @Singleton

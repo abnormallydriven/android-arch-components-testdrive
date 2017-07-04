@@ -8,7 +8,7 @@ import android.arch.persistence.room.TypeConverters;
 import com.abnormallydriven.architecturecomponentspost.common.data.entities.Measurement;
 import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 
-@Database(version = 1, entities = {User.class, Measurement.class})
+@Database(version = 2, entities = {User.class, Measurement.class})
 @TypeConverters({RoomTypeConverters.class})
 public abstract class MeasurementDatabase extends RoomDatabase {
 

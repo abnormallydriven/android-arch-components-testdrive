@@ -1,6 +1,7 @@
 package com.abnormallydriven.architecturecomponentspost.common.data;
 
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -23,5 +24,5 @@ public interface MeasurementDao {
     void deleteMeasurement(Measurement measurement);
 
     @Query("SELECT * from measurements where userId = :userId")
-    Measurement[] getUserMeasurements(long userId);
+    LiveData<Measurement[]> getUserMeasurements(long userId);
 }
