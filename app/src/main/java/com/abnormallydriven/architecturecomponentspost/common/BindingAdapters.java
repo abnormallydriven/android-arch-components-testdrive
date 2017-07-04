@@ -13,6 +13,10 @@ public class BindingAdapters {
 
 
     public static float getFloat(EditText editText, String newValue){
-        return Float.parseFloat(newValue);
+        if(newValue.isEmpty()){
+            return 0.0f;
+        } else {
+            return Float.parseFloat(newValue);
+        }
     }
 }
