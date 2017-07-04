@@ -7,8 +7,10 @@ import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.abnormallydriven.architecturecomponentspost.common.NavigationController;
 import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDao;
 import com.abnormallydriven.architecturecomponentspost.common.data.entities.Measurement;
+import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.common.di.Disk;
 import com.abnormallydriven.architecturecomponentspost.common.di.UI;
 
@@ -30,13 +32,20 @@ public class UserMeasurementViewModel extends ViewModel {
     private final MeasurementDao measurementDao;
 
     @NonNull
+    private final NavigationController navigationController;
+
+    @NonNull
     private final MutableLiveData<Measurement[]> measurementsLiveData;
 
     @Inject
-    UserMeasurementViewModel(@NonNull @UI Executor uiExecutor, @NonNull @Disk Executor diskExecutor, @NonNull MeasurementDao measurementDao){
+    UserMeasurementViewModel(@NonNull @UI Executor uiExecutor,
+                             @NonNull @Disk Executor diskExecutor,
+                             @NonNull MeasurementDao measurementDao,
+                             @NonNull NavigationController navigationController){
         this.uiExecutor = uiExecutor;
         this.diskExecutor = diskExecutor;
         this.measurementDao = measurementDao;
+        this.navigationController = navigationController;
 
         measurementsLiveData = new MutableLiveData<>();
         measurementsLiveData.setValue(new Measurement[0]);
@@ -67,5 +76,9 @@ public class UserMeasurementViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         //todo
+    }
+
+    void onAddMeasurementClick(User selectedUser) {
+        navigationController.navigateToAddMeasurement(selectedUser);
     }
 }

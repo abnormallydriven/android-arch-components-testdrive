@@ -5,10 +5,15 @@ import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.abnormallydriven.architecturecomponentspost.R;
 import com.abnormallydriven.architecturecomponentspost.common.ApplicationViewModelFactory;
@@ -37,6 +42,7 @@ public class UserMeasurementsActivity extends AppCompatActivity implements Lifec
     private ActivityUserMeasurementsBinding binding;
 
     private UserMeasurementViewModel userMeasurementViewModel;
+    private User selectedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +62,8 @@ public class UserMeasurementsActivity extends AppCompatActivity implements Lifec
         userMeasurementViewModel = ViewModelProviders.of(this, applicationViewModelFactory).get(UserMeasurementViewModel.class);
 
         if(savedInstanceState == null){
-            User user = getIntent().getParcelableExtra("user");
-            userMeasurementViewModel.onRefreshMeasurements(user.getId());
+            selectedUser = getIntent().getParcelableExtra("user");
+            userMeasurementViewModel.onRefreshMeasurements(selectedUser.getId());
         }
 
         userMeasurementViewModel.getUserMeasurements().observe(this, new Observer<Measurement[]>() {
@@ -71,6 +77,27 @@ public class UserMeasurementsActivity extends AppCompatActivity implements Lifec
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_user_measurements_menu, menu);
+        Drawable drawable = menu.findItem(R.id.add_measurement_item).getIcon();
+
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this, android.R.color.white));
+        menu.findItem(R.id.add_measurement_item).setIcon(drawable);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.add_measurement_item){
+            userMeasurementViewModel.onAddMeasurementClick(selectedUser);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
