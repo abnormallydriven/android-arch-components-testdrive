@@ -19,12 +19,16 @@
         </activity>
         <activity
                 android:name=".adduser.AddUserActivity"
+                android:label="Add User"
                 android:parentActivityName=".userlist.UserListActivity">
         </activity>
-        <activity android:name=".addmeasurements.AddMeasurementsActivity">
+        <activity android:name=".addmeasurements.AddMeasurementsActivity"
+                android:label="Add Measurements"
+                >
         </activity>
         <activity
                 android:name=".usermeasurements.UserMeasurementsActivity"
+                android:label="User Measurements"
                 android:parentActivityName=".userlist.UserListActivity">
         </activity>
     </application>
