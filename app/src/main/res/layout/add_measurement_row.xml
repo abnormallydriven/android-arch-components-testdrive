@@ -12,10 +12,6 @@
                 name="labelText"
                 type="String"/>
 
-        <variable
-            name="measurementValue"
-            type="Float"/>
-
     </data>
 
 
@@ -38,7 +34,6 @@
         <EditText
                 android:id="@+id/measurement_value_edit_text"
                 tools:text="23.4"
-                android:text="@={BindingAdapters.convertFloatToString(measurementValueEditText, measurementValue)}"
                 android:inputType="numberDecimal"
                 android:layout_height="wrap_content"
                 tools:layout_editor_absoluteY="8dp"
