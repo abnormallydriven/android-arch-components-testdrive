@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 @Singleton
 public class AddMeasurementsActivityIntentFactory {
 
-    public static final String USER_EXTRA_KEY = "user";
+    static final String USER_EXTRA_KEY = "user";
     private final Context appContext;
 
     @Inject

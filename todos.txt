@@ -1,9 +1,9 @@
 
 
-Espresso tests for the add user screen
+Espresso tests Add User Activity
+Espresso Tests for AddMeasurementsActivity
+Espresso tests for UserMeasurementsActivity
 clear data when necessary in viewmodels, they are singletons, could they have their scope taken away?
 View measurement detail screen
 Add measurement screen date picker in actionbar as a dialog
 use a number picker for age instead of a text field
-eliminate the two way binding in the add measurement activity. just collect the fields and validate.
-measurement weight

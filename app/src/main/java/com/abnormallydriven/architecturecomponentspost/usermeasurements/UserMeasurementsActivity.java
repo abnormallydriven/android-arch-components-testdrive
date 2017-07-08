@@ -62,7 +62,7 @@ public class UserMeasurementsActivity extends AppCompatActivity implements Lifec
         userMeasurementViewModel = ViewModelProviders.of(this, applicationViewModelFactory).get(UserMeasurementViewModel.class);
 
         if(savedInstanceState == null){
-            selectedUser = getIntent().getParcelableExtra("user");
+            selectedUser = getIntent().getParcelableExtra(UserMeasurementsActivityIntentFactory.SELECTED_USER_INTENT_KEY);
             userMeasurementViewModel.onRefreshMeasurements(selectedUser.getId());
         }
 

@@ -134,7 +134,7 @@ public class AddMeasurementsActivity extends AppCompatActivity implements Lifecy
     }
 
     private User getUserFromIntent(){
-        return getIntent().getParcelableExtra("user");
+        return getIntent().getParcelableExtra(AddMeasurementsActivityIntentFactory.USER_EXTRA_KEY);
     }
 
     @Override
