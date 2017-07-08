@@ -15,8 +15,9 @@ import com.abnormallydriven.architecturecomponentspost.common.di.UI;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
-//TODO test the clear method for this viewModel
+@Singleton
 public class AddUserViewModel extends ViewModel {
 
     private final Executor diskExecutor;
@@ -70,6 +71,16 @@ public class AddUserViewModel extends ViewModel {
         gender.addOnPropertyChangedCallback(formValidationCallback);
     }
 
+    @Override
+    protected void onCleared() {
+        isValidForm.set(false);
+        firstName.set("");
+        lastName.set("");
+        age.set("");
+        gender.set("");
+        isSavingData.set(false);
+        shouldShowSavedSuccessMessage.set(false);
+    }
 
     public ObservableBoolean isValidForm(){
         return isValidForm;

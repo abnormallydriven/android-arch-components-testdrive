@@ -40,7 +40,7 @@ class UserMeasurementsAdapter extends RecyclerView.Adapter<UserMeasurementsAdapt
 
     @Override
     public int getItemCount() {
-        return 0;
+        return measurements.length;
     }
 
     static class UserMeasurementViewHolder extends RecyclerView.ViewHolder{

@@ -40,5 +40,24 @@ public class AddUserViewModelTest {
         assertTrue(objectUnderTest.isValidForm().get());
     }
 
+    @Test
+    public void onClearedShouldResetViewModel(){
+        objectUnderTest.getFirstName().set("john");
+        objectUnderTest.getLastName().set("test");
+        objectUnderTest.getAge().set("99");
+        objectUnderTest.getGender().set("M");
+        objectUnderTest.getIsSavingData().set(true);
+        objectUnderTest.getShouldShowSavedSuccessMessage().set(true);
+
+        objectUnderTest.onCleared();
+
+        assertTrue(objectUnderTest.getFirstName().get().isEmpty());
+        assertTrue(objectUnderTest.getLastName().get().isEmpty());
+        assertTrue(objectUnderTest.getAge().get().isEmpty());
+        assertTrue(objectUnderTest.getGender().get().isEmpty());
+        assertFalse(objectUnderTest.getIsSavingData().get());
+        assertFalse(objectUnderTest.getShouldShowSavedSuccessMessage().get());
+    }
+
 
 }

@@ -2,22 +2,17 @@ package com.abnormallydriven.architecturecomponentspost.addmeasurements;
 
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableFloat;
 import android.support.annotation.NonNull;
 
 import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDao;
 import com.abnormallydriven.architecturecomponentspost.common.data.entities.Measurement;
-import com.abnormallydriven.architecturecomponentspost.common.data.entities.User;
 import com.abnormallydriven.architecturecomponentspost.common.di.Disk;
 import com.abnormallydriven.architecturecomponentspost.common.di.UI;
 
-import java.util.Date;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-//TODO tests
 
 @Singleton
 public class AddMeasurementsViewModel extends ViewModel {
@@ -65,5 +60,11 @@ public class AddMeasurementsViewModel extends ViewModel {
 
             }
         });
+    }
+
+    @Override
+    protected void onCleared() {
+        shouldShowProgressSpinner.set(false);
+        shouldShowSaveSuccessMessage.set(false);
     }
 }
