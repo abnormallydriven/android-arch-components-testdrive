@@ -3,6 +3,7 @@ package com.abnormallydriven.architecturecomponentspost.usermeasurements;
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 
 import com.abnormallydriven.architecturecomponentspost.common.NavigationController;
 import com.abnormallydriven.architecturecomponentspost.common.data.MeasurementDao;
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@SuppressWarnings("unchecked")
 public class UserMeasurementViewModelTest {
 
     @Rule
@@ -52,6 +54,8 @@ public class UserMeasurementViewModelTest {
         MutableLiveData<Measurement[]> fakeLiveData = new MutableLiveData<>();
         fakeLiveData.setValue(measurements);
         when(mockDao.getUserMeasurements(fakeUserId)).thenReturn(fakeLiveData);
+
+        objectUnderTest.getUserMeasurements().observeForever(mock(Observer.class));
 
         objectUnderTest.onRefreshMeasurements(fakeUserId);
 

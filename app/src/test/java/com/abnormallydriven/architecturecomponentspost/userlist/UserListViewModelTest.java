@@ -2,6 +2,7 @@ package com.abnormallydriven.architecturecomponentspost.userlist;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 
 import com.abnormallydriven.architecturecomponentspost.common.NavigationController;
 import com.abnormallydriven.architecturecomponentspost.common.data.UserDao;
@@ -11,6 +12,8 @@ import com.abnormallydriven.architecturecomponentspost.utils.SynchronousExecutor
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.util.concurrent.Executor;
 
@@ -20,6 +23,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
+
+@SuppressWarnings("unchecked")
+@RunWith(JUnit4.class)
 public class UserListViewModelTest {
 
     @Rule
@@ -36,7 +42,7 @@ public class UserListViewModelTest {
         mockDao = mock(UserDao.class);
         mockNavController = mock(NavigationController.class);
 
-        objectUnderTest = new UserListViewModel(synchronousExecutor, synchronousExecutor, mockNavController, mockDao);
+        objectUnderTest = new UserListViewModel(synchronousExecutor, mockNavController, mockDao);
     }
 
     @Test
@@ -55,6 +61,8 @@ public class UserListViewModelTest {
         assertEquals(0, emptyUsers.length);
 
         when(mockDao.getAllUsers()).thenReturn(fakeMutableData);
+
+        objectUnderTest.getUsers().observeForever(mock(Observer.class));
 
         objectUnderTest.onRefreshUserList();
 
