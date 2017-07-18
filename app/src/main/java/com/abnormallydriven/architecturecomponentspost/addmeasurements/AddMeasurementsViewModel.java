@@ -34,7 +34,7 @@ public class AddMeasurementsViewModel extends ViewModel {
     @Inject
     public AddMeasurementsViewModel(@UI @NonNull Executor uiExecutor,
                                     @Disk @NonNull Executor diskExecutor,
-                                    MeasurementDao measurementDao) {
+                                    @NonNull MeasurementDao measurementDao) {
         this.uiExecutor = uiExecutor;
         this.diskExecutor = diskExecutor;
         this.measurementDao = measurementDao;

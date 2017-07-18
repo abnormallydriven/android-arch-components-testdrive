@@ -64,7 +64,6 @@ public class UserMeasurementViewModel extends ViewModel {
             public void run() {
                 final LiveData<Measurement[]> liveData = measurementDao.getUserMeasurements(userId);
                 measurementsLiveData.addSource(liveData, new Observer<Measurement[]>() {
-
                     @Override
                     public void onChanged(@Nullable Measurement[] measurements) {
                         measurementsLiveData.setValue(measurements);
