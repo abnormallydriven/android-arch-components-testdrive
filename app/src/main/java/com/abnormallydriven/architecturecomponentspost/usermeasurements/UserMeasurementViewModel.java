@@ -1,7 +1,7 @@
 package com.abnormallydriven.architecturecomponentspost.usermeasurements;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
@@ -32,7 +32,7 @@ public class UserMeasurementViewModel extends ViewModel {
     private final NavigationController navigationController;
 
     @NonNull
-    private final MutableLiveData<Measurement[]> measurementsLiveData;
+    private final MediatorLiveData<Measurement[]> measurementsLiveData;
 
     @NonNull
     public final ObservableBoolean shouldShowProgressSpinner;
@@ -45,7 +45,7 @@ public class UserMeasurementViewModel extends ViewModel {
         this.measurementDao = measurementDao;
         this.navigationController = navigationController;
 
-        measurementsLiveData = new MutableLiveData<>();
+        measurementsLiveData = new MediatorLiveData<>();
         measurementsLiveData.setValue(new Measurement[0]);
 
         shouldShowProgressSpinner = new ObservableBoolean(false);
@@ -63,11 +63,11 @@ public class UserMeasurementViewModel extends ViewModel {
             @Override
             public void run() {
                 final LiveData<Measurement[]> liveData = measurementDao.getUserMeasurements(userId);
-                liveData.observeForever(new Observer<Measurement[]>() {
+                measurementsLiveData.addSource(liveData, new Observer<Measurement[]>() {
+
                     @Override
                     public void onChanged(@Nullable Measurement[] measurements) {
                         measurementsLiveData.setValue(measurements);
-                        liveData.removeObserver(this);
                         shouldShowProgressSpinner.set(false);
                     }
                 });
