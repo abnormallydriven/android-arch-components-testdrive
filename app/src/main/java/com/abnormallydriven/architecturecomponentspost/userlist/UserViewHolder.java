@@ -9,7 +9,7 @@ class UserViewHolder extends RecyclerView.ViewHolder {
 
     private final AdapterItemUserBinding binding;
 
-    public UserViewHolder(AdapterItemUserBinding binding) {
+    UserViewHolder(AdapterItemUserBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
@@ -17,5 +17,6 @@ class UserViewHolder extends RecyclerView.ViewHolder {
     public void bind(User user){
         binding.setName(user.getFirstName() + " " + user.getLastName());
         binding.setGender(user.getGender());
+        binding.setAge(String.valueOf(user.getAge()));
     }
 }
